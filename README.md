@@ -1,4 +1,4 @@
-# sparta_instargram
+# Sparta_Instargram
 instargram crud 구현하기<br>
 
 
@@ -7,9 +7,9 @@ instargram crud 구현하기<br>
 
 ## 💻 멤버 구성
 - <a href="https://github.com/seongyouchang">성유창(조장)</a>
-- 김미지
+- <a href="https://github.com/KIMMIJIDLQSLEK">김미지</a>
 - <a href="https://github.com/Hogu-yoon">김윤서</a>
-- 서지훈
+- <a href="https://github.com/seojh1011">서지훈</a>
 - <a href="https://github.com/nxxxtyetdecided">정미정</a>
 
 ## 📚 기술 스택
