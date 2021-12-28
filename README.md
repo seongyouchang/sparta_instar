@@ -9,7 +9,7 @@ instargram crud 구현하기<br>
 - <a href="https://github.com/seongyouchang">성유창(조장)</a>
 - 김미지
 - <a href="https://github.com/Hogu-yoon">김윤서</a>
-- 서지윤
+- 서지훈
 - <a href="https://github.com/nxxxtyetdecided">정미정</a>
 
 ## 📚 기술 스택
