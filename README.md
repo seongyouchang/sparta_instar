@@ -30,5 +30,3 @@ instargram crud 구현하기<br>
 - 포스트 CRUD
 - 댓글 CRUD
 - 마이 페이지
-
-수정합니다
