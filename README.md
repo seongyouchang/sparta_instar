@@ -1,3 +1,12 @@
-# sparta_instar
+# sparta_instargram
 instar 구현하기<br>
 링크
+
+## 개발 기간
+2021.12.28 ~ 2022.01.03
+
+## 멤버 구성
+
+## 기술 스택
+
+## 주요 기능
