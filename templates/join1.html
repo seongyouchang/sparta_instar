@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/join.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+
+        function same() {
+            var p1 = document.getElementById('pw').value;
+            var p2 = document.getElementById('pw2').value;
+            if (p1 != p2) {
+                alert("비밀번호가 일치 하지 않습니다");
+                return false;
+            } else {
+                alert("비밀번호가 일치합니다");
+                return true;
+            }
+        }
+
+        function allinput() {
+            var id = document.getElementById('id').value;
+            var nick = document.getElementById('nick').value;
+            var pw = document.getElementById('pw').value;
+            var pw2 = document.getElementById('pw2').value;
+            var email = document.getElementById('email').value;
+            if (id == "") {
+                alert('아이디를 입력하세요.');
+                id.focus();
+                return false;
+            }
+            if (nick == "") {
+                alert('닉네임을 입력하세요.');
+                nick.focus();
+                return false;
+            }
+            if (email == "") {
+                alert('이메일을 입력하세요.');
+                email.focus();
+                return false;
+            }
+            if (pw == "") {
+                alert('비밀번호를 입력하세요.');
+                pw.focus();
+                return false;
+            }
+            if (pw2 == "") {
+                alert('다시한번 입력하세요.');
+                pw.focus();
+                return false;
+            }
+        }
+
+        function clear() {
+            var id = document.getElementById('id').value;
+            var nick = document.getElementById('nick').value;
+            var pw = document.getElementById('pw').value;
+            var pw2 = document.getElementById('pw2').value;
+            var email = document.getElementById('email').value;
+        }
+
+        // $(document).ready(function () {
+        //         show_bucket();
+        //     });
+
+        // function show_bucket() {
+        //         $.ajax({
+        //             type: "GET",
+        //             url: "/register",
+        //             data: {},
+        //             success: function (response) {
+        //                 alert(response["msg"])
+        //             }
+        //         });
+        //     }
+
+        function check() {
+            let id = $('#id_input').val()
+            $.ajax({
+                type: "POST",
+                url: "/id_check",
+                data: {id_give: id},
+                success: function (response) {
+                    if(response==true)   //중복되어 사용불가능한 아이디
+                    {
+                        alert("중복된 아이디입니다. 다시 입력해주세요.")
+                        window.location.reload()
+                    }
+                    else    //사용가능한 아이디
+                    {
+                        alert("사용가능한 아이디입니다.")
+                    }
+                }
+            });
+        }
+        function join_button() {
+            let id = $('#id_input').val()
+            let pw1 = $('#pw1_input').val()
+            let pw2 = $('#pw2_input').val()
+            let nick = $('#nick_input').val()
+            let email = $('#email_input').val()
+            $.ajax({
+                type: "POST",
+                url: "/register",
+                data: {id_give: id,pw1_give: pw1,pw2_give:pw2,nick_give:nick,email_give:email},
+                success: function (response) {
+                    if(response==0)
+                    {
+                        alert("이메일을 다시 입력하세요")
+                    }
+                    else if(response==1)  //패스워드 일치하여 회원가입성공
+                    {
+                        alert("회원가입 성공!")
+                        window.location.reload()
+                    }
+                    else  //패스워드 불일치할경우
+                    {
+                        alert("패스워드를 다시 확인해주세요")
+                    }
+
+                }
+            });
+        }
+    </script>
+</head>
+
+<body>
+<div class='join'>
+    <div class='wrap'>
+        <div class="head">
+            <h2>회원가입</h2>
+        </div>
+        <div class="id">
+            <div class="input-group mb-3">
+                <input id="id_input" type="text" class="form-control" placeholder="아이디를 입력해주세요."
+                       aria-label="Recipient's username"
+                       aria-describedby="button-addon2">
+                <button onclick="check()" class="btn btn-outline-secondary" type="button" id="button-addon2">중복체크
+                </button>
+            </div>
+        </div>
+
+        <div class='password'>
+            <div class="form-floating">
+<<<<<<< HEAD
+                <input id="pw1_input" type="password" class="form-control" id="floatingPassword" placeholder="비밀번호를 입력해주세요.">
+                <label for="floatingPassword"></label>
+=======
+                <input type="password" class="form-control" id="pw" placeholder="비밀번호를 입력해주세요.">
+                <label for="pw"></label>
+>>>>>>> 9f6dff4b831029e282606f15f6fd75717dd9d94d
+            </div>
+        </div>
+        <div class='repassword'>
+            <div class="form-floating">
+<<<<<<< HEAD
+                <input id="pw2_input" type="password" class="form-control" id="floatingPassword" placeholder="다시한번 입력해주세요.">
+                <label for="floatingPassword"></label>
+=======
+                <input type="password" class="form-control" id="pw2" placeholder="다시한번 입력해주세요.">
+                <label for="pw2"></label>
+>>>>>>> 9f6dff4b831029e282606f15f6fd75717dd9d94d
+            </div>
+        </div>
+        <div class='nick-name'>
+            <div class="form-floating mb-3">
+<<<<<<< HEAD
+                <input id="nick_input" type="nick-name" class="form-control" id="floatingInput" placeholder="닉네임을 입력해주세요.">
+=======
+                <input type="text" class="form-control" id="nick" placeholder="닉네임을 입력해주세요.">
+>>>>>>> 9f6dff4b831029e282606f15f6fd75717dd9d94d
+
+            </div>
+
+        </div>
+        <div class='email'>
+            <div class="form-floating mb-3">
+<<<<<<< HEAD
+                <input id="email_input" type="email" class="form-control" id="floatingInput" placeholder="이메일을 입력해주세요.">
+=======
+                <input type="email" class="form-control" id="email" placeholder="이메일을 입력해주세요.">
+>>>>>>> 9f6dff4b831029e282606f15f6fd75717dd9d94d
+            </div>
+        </div>
+        <div class='button'>
+            <div class='join-bt'>
+                <button onclick="join_button()" type="button" class="btn btn-primary">가입하기</button>
+            </div>
+            <div class='cancel-bt'>
+                <button type="button" class="btn btn-secondary">취소하기</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
