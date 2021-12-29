@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ko">
+<!--포스트 겟 리스트-->
+<!--댓글 find  겟-->
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+          integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../static/post.css">
+    <script>
+
+        $(document).ready(function () {
+            postList();
+        });
+
+        function postList() {
+            $.ajax({
+                type: 'GET',
+                url: '/posts ',
+                data: {},
+                success: function (response) {
+                    let boards = response['board_table']
+                    for (board of boards) {
+                        let boardNum = board['boardNum']
+                        let id = board['id']
+                        let title = board['title']
+                        let tag = board['tag']
+                        let pictureUrl = board['pictureUrl']
+
+                        let temp_html = `<div class="section_article">
+            <div class="header_menu_article">
+                <div class="header_menu_img">
+                    <img src="../static/img/bird01.jpg" alt="">
+                </div>
+                <p>${id}</p>
+                <div onclick="pageDelete(${boardNum})" class="dots">
+                    <i class="fas fa-ellipsis-h fa-2x"></i>
+                </div>
+            </div>
+            <div class="article_img"
+                 style="background-image: url(${pictureUrl})">
+            </div>
+            <div class="article_menu">
+                <div class="menu_box1"><i class="far fa-heart fa-2x"></i></div>
+                <div class="menu_box2">
+                    <div>
+                        <div onclick="replePageGet('boardNum')" class="speechBubble">
+                            <i class="far fa-comment fa-flip-horizontal fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu_box3">
+                    <div>
+                        <div onclick="" class="directMessage">
+                            <i class="far fa-paper-plane fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu_box4">
+                    <div>
+                        <div onclick="linkShare('boardNum')" class="linkShare">
+                            <i class="fas fa-share-alt fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="article_footer">
+                <div class="article_footer_header">
+                    <div class="header_menu_img">
+                        <img src="../static/img/bird01.jpg" alt="">
+                    </div>
+                    <p><span>이용자</span>님 외 <span>6,6712명</span>이 좋아합니다.</p>
+                </div>
+                <br>
+                <div class="reple"><span>이용자</span> 안녕하세요</div>
+                <div class="time">8시간 전</div>
+            </div>
+        </div>`
+                        $('#order-box').append(temp_html)
+                        console.log(name, address, size)
+                    }
+                    console.log(response)
+                }
+            });
+        }
+
+
+        function pageDelete(boardNum) {
+            console.log("메롱");
+            let deleteBoardNum = boardNum;
+            let address = $('#address').val();
+            let size = $('#size').val();
+            $.ajax({
+                type: 'POST',
+                url: '/mars',
+                data: {name_receive: name, address_receive: address, size_receive: size},
+                success: function (response) {
+                    alert(response['msg']);
+                    window.location.reload();
+                }
+            });
+        }
+
+        function replePageGet(boardNum) {
+            console.log("reple");
+            let deleteBoardNum = boardNum;
+            let address = $('#address').val();
+            let size = $('#size').val();
+            $.ajax({
+                type: 'POST',
+                url: '/mars',
+                data: {name_receive: name, address_receive: address, size_receive: size},
+                success: function (response) {
+                    alert(response['msg']);
+                    window.location.reload();
+                }
+            });
+
+        }
+
+        function linkShare(boardNum) {
+            console.log("url");
+            let deleteBoardNum = boardNum;
+            let address = $('#address').val();
+            let size = $('#size').val();
+            $.ajax({
+                type: 'POST',
+                url: '/mars',
+                data: {name_receive: name, address_receive: address, size_receive: size},
+                success: function (response) {
+                    alert(response['msg']);
+                    window.location.reload();
+                }
+            });
+
+        }
+
+        function postAdd(boardNum) {
+            console.log("post")
+            let deleteBoardNum = boardNum;
+            let address = $('#address').val();
+            let size = $('#size').val();
+            $.ajax({
+                type: 'POST',
+                url: '/mars',
+                data: {name_receive: name, address_receive: address, size_receive: size},
+                success: function (response) {
+                    alert(response['msg']);
+                    window.location.reload();
+                }
+            });
+        }
+
+        //내스토리 라이브 온오프
+        window.onload = function () {
+            var storys = document.getElementsByClassName("story-off");
+            var hearts = document.getElementsByClassName("far fa-heart fa-2x")
+
+            for (var i = 0; i < storys.length; i++) {
+                storys[i].addEventListener('click', function () {
+                    console.log("Ddd");
+                    if (this.className === 'story-off') {
+                        this.className = 'story-on'
+
+                    } else {
+                        this.className = 'story-off'
+                    }
+                });
+            }
+
+            for (var i = 0; i < hearts.length; i++) {
+                hearts[i].addEventListener('click', function () {
+                    console.log("sdfsdf");
+                    if (this.className === 'far fa-heart fa-2x') {
+                        this.className = 'fas fa-heart fa-2x'
+                        console.log(this.classList);
+                        this.style.color = "red";
+                    } else {
+                        this.className = 'far fa-heart fa-2x'
+                        this.style.color = "black";
+                    }
+                });
+            }
+        }
+    </script>
+</head>
+
+<body>
+<header>
+
+</header>
+<section id="wrapper">
+    <div id="header_contanier">
+        <div id="header_box1">
+            <i class="fab fa-instagram fa-lg"></i>
+        </div>
+        <div id="header_box2">instagram</div>
+        <div id="header_box3">
+            <i class="far fa-paper-plane fa-lg"></i>
+        </div>
+    </div>
+    <div id="section_contanier">
+        <div id="header_article">
+            <div class="mystory_box">
+                <div class="story-off"><img src="../static/img/puppy01.jpg" alt=""></div>
+                <p>내스토리</p>
+            </div>
+            <div class="mystory_box">
+                <div class="story-off"><img src="../static/img/puppy02.jpg" alt=""></div>
+                <p>내스토리</p>
+            </div>
+            <div class="mystory_box">
+                <div class="story-off"><img src="../static/img/cat01.jpg" alt=""></div>
+                <p>내스토리</p>
+            </div>
+            <div class="mystory_box">
+                <div class="story-off"><img src="../static/img/bird01.jpg" alt=""></div>
+                <p>내스토리</p>
+            </div>
+            <div class="mystory_box">
+                <div class="story-off"><img src="../static/img/puppy03.jpg" alt=""></div>
+                <p>내스토리</p>
+            </div>
+            <div class="mystory_box">
+                <div class="story-off"><img src="../static/img/puppy03.jpg" alt=""></div>
+                <p>내스토리</p>
+            </div>
+            <div class="mystory_box">
+                <div class="story-off"><img src="../static/img/puppy03.jpg" alt=""></div>
+                <p>내스토리</p>
+            </div>
+
+        </div>
+        <div class="section_article">
+            <div class="header_menu_article">
+                <div class="header_menu_img">
+                    <img src="../static/img/bird01.jpg" alt="">
+                </div>
+                <p>이용자</p>
+                <div onclick="pageDelete('boardNum')" class="dots">
+                    <i class="fas fa-ellipsis-h fa-2x"></i>
+                </div>
+            </div>
+            <div class="article_img"
+                 style="background-image: url('https://cdn.mkhealth.co.kr/news/photo/202004/img_MKH200427004_0.jpg')">
+            </div>
+            <div class="article_menu">
+                <div class="menu_box1"><i class="far fa-heart fa-2x"></i></div>
+                <div class="menu_box2">
+                    <div>
+                        <div onclick="replePageGet('boardNum')" class="speechBubble">
+                            <i class="far fa-comment fa-flip-horizontal fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu_box3">
+                    <div>
+                        <div onclick="" class="directMessage">
+                            <i class="far fa-paper-plane fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu_box4">
+                    <div>
+                        <div onclick="linkShare('boardNum')" class="linkShare">
+                            <i class="fas fa-share-alt fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="article_footer">
+                <div class="article_footer_header">
+                    <div class="header_menu_img">
+                        <img src="../static/img/bird01.jpg" alt="">
+                    </div>
+                    <p><span>이용자</span>님 외 <span>6,6712명</span>이 좋아합니다.</p>
+                </div>
+                <br>
+                <div class="reple"><span>이용자</span> 안녕하세요</div>
+                <div class="time">8시간 전</div>
+            </div>
+        </div>
+
+        <div class="section_article">
+            <div class="header_menu_article">
+                <div class="header_menu_img">
+                    <img src="../static/img/bird01.jpg" alt="">
+                </div>
+                <p>이용자</p>
+                <div class="dots">
+                    <i class="fas fa-ellipsis-h fa-2x"></i>
+                </div>
+            </div>
+            <div class="article_img"
+                 style="background-image: url('https://cdn.mkhealth.co.kr/news/photo/202004/img_MKH200427004_0.jpg')">
+            </div>
+            <div class="article_menu">
+                <div class="menu_box1"><i class="far fa-heart fa-2x"></i></div>
+                <div class="menu_box2"><i class="far fa-comment fa-flip-horizontal fa-2x"></i></div>
+                <div class="menu_box3"><i class="far fa-paper-plane fa-2x"></i></div>
+                <div class="menu_box4"><i class="fas fa-share-alt fa-2x"></i></div>
+            </div>
+            <div class="article_footer">
+                <div class="article_footer_header">
+                    <div class="header_menu_img">
+                        <img src="../static/img/bird01.jpg" alt="">
+                    </div>
+                    <p><span>이용자</span>님 외 <span>6,6712명</span>이 좋아합니다.</p>
+                </div>
+                <br>
+                <div class="reple"><span>이용자</span> 안녕하세요</div>
+                <div class="time">8시간 전</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer_container">
+        <ul>
+            <li><i class="fas fa-home fa-2x"></i></li>
+            <li><i class="fas fa-search fa-2x"></i></li>
+            <li><i onclick="postAdd('boardNum')" class="far fa-plus-square fa-2x"></i></li>
+            <li><i class="far fa-heart fa-2x"></i></li>
+            <li><i class="fas fa-user-circle fa-2x"></i></li>
+        </ul>
+
+    </div>
+
+    <script>
+
+    </script>
+</section>
+<footer>
+
+</footer>
+</body>
+</html>

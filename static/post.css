@@ -1,0 +1,264 @@
+@charset "UTF-8";
+
+
+/*기본적인 레이아웃 설정*/
+body {
+    background: -webkit-gradient(linear, left bottom, right top, from(#92b5db), to(#1d466c));
+    background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+    background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+    background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+    background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%);
+}
+
+
+#wrapper {
+    background: white;
+    max-width: 680px;
+    height: 85vh;
+    margin: 5vh auto 11vh;
+    -ms-overflow-style: none;
+    box-shadow: 5px 5px 10px gray;
+    border-radius: 10px;
+    /*    border: 1px solid gray;*/
+
+}
+
+
+#header_contanier {
+    width: 100%;
+    height: 5%;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+#footer_contanier {
+    width: 100%;
+    height: 5%;
+
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    position: sticky;
+    top: 100px;
+}
+
+#section_contanier {
+    width: 100%;
+    height: 90%;
+
+    overflow: scroll;
+
+    border-bottom: 1px solid #e5e5e5;
+
+}
+
+#section_contanier::-webkit-scrollbar {
+    display: none;
+}
+
+/*header bar 스타일*/
+#header_contanier {
+    display: flex;
+    justify-content: space-between
+}
+
+#header_contanier div {
+    margin: 2%;
+}
+
+#header_box1 {
+}
+
+#header_box2 {
+}
+
+#header_box3 {
+}
+
+/*header article 스타일*/
+#header_article {
+
+    display: flex;
+    width: 100%;
+    height: 16%;
+    overflow: scroll;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+#header_article::-webkit-scrollbar {
+    display: none;
+}
+
+.mystory_box {
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    text-align: center;
+    width: 150px;
+
+    border-radius: 70%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+
+}
+
+.story-on {
+
+    width: 13vw;
+    max-width: 80px;
+    max-height: 80px;
+    height: 13vw;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    background-image: linear-gradient(#f6f6f6, #f6f6f6),
+    linear-gradient(to right, #ff7700, #ff3636aa, #ff00c3);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.story-off {
+
+    width: 13vw;
+    max-width: 80px;
+    max-height: 80px;
+    height: 13vw;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    background-image: linear-gradient(#f6f6f6, #f6f6f6),
+    linear-gradient(#c4c4c4, #c4c4c4);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.mystory_box img {
+
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.mystory_box > P {
+    margin: 5%;
+}
+
+/*section_article 설정 */
+.header_menu_article {
+    padding-left: 1%;
+    display: flex;
+    justify-content: space-between
+}
+
+.header_menu_article .dots {
+    margin: 1% 3%;
+    flex: 1 1 1;
+
+}
+
+
+.header_menu_article > p {
+
+    margin: auto;
+    flex: 1 1 0;
+    font-weight: bold;
+}
+
+
+.header_menu_img img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid lightgray;
+    margin: 0 2%;
+}
+
+/*article */
+.article_img {
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    height: 480px;
+
+}
+
+.article_menu {
+
+    display: flex;
+    justify-content: flex-start;
+    flex: 1 1 0;
+}
+
+.menu_box1 {
+    padding: 3%;
+
+    flex: 0
+}
+
+.menu_box2 {
+    padding: 3%;
+    flex: 0
+}
+
+.menu_box3 {
+
+    padding: 3%;
+    flex: 1
+}
+
+.menu_box4 {
+    padding: 3%;
+    flex: 0 0 0;
+}
+
+/*article-footer-header 부분 설정*/
+.article_footer_header {
+    margin: 0 2%;
+    display: flex;
+}
+
+.article_footer_header p {
+    margin: auto 2%;
+}
+
+.article_footer_header > p > span {
+    font-weight: bold;
+}
+
+/*article-footer-section 부분 설정*/
+.reple {
+}
+
+.reple > span {
+    margin: 10px;
+    font-weight: bold;
+}
+
+.time {
+    margin: 30px 10px;
+}
+
+/*section-footer 부분 설정*/
+#footer_container {
+    background: white;
+    box-shadow: 5px 5px 10px gray;
+    border-radius: 10px;
+
+}
+
+#footer_container ul {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#footer_container ul li {
+    margin: 2%;
+}

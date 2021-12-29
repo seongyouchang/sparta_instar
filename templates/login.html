@@ -1,65 +1,87 @@
 <!DOCTYPE html>
 <html lang="ko">
-<!--dddddddddd-->
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="../static/login.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+
+
+        function login() {
+            console.log("test");
+            var formString = $("form[name=login_form]").serialize();
+            // {id : 아이디, password : 패스워드}
+            $.ajax({
+                type: 'POST',
+                url: '/login',
+                data: formString,
+                dataType: 'json',
+                success: function (response) {
+                    if (response['result'] == 'success') {
+                            $.cookie('mytoken', response['token']);
+                            alert('로그인 완료!')
+                            window.location.href = '/'
+                        } else {
+                            alert(response['msg'])
+                        }
+                }
+            });
+        }
+
+    </script>
 </head>
 
 
 <body>
-    <div id="warper">
+<div id="warper">
 
-        <div id="container">
-            <form action="./login" id="login_form" class="input-form" method="post" novalidate>
-                <div id="header_con">
-                    <h2>Login</h2>
-                </div>
-                <ul>
-                    <li>
-                        <input id="id" class="form-control" type="text" placeholder="ID를 입력해주세요" name="id" required>
-                        <div class="invalid-feedback"> ID를 입력해주세요. </div>
-                    </li>
-                    <li>
-                        <input id="password" class="form-control" type="password" placeholder="password를 입력해주세요" name="password" required>
-                        <div class="invalid-feedback"> 비밀번호를 입력해주세요. </div>
-                    </li>
-                    <li><input id="submit" class="btn btn-primary btn-lg btn-block" type="submit" value="로그인"></li>
-                </ul>
-                <hr>
-                <div id="footer_con">
-                    <p>계정이 없으신가요?<a href="./register">가입하기</a></p>
-                </div>
-            </form>
-        </div>
-        <div id="footer">
-
-        </div>
+    <div id="container">
+        <form id="login_form" name="login_form" class="input-form" novalidate>
+            <div id="header_con">
+                <h2>Login</h2>
+            </div>
+            <ul>
+                <li>
+                    <input id="id" class="form-control" type="text" placeholder="ID를 입력해주세요" name="id" required>
+                    <div class="invalid-feedback"> ID를 입력해주세요.</div>
+                </li>
+                <li>
+                    <input id="password" class="form-control" type="password" placeholder="password를 입력해주세요"
+                           name="password" required>
+                    <div class="invalid-feedback"> 비밀번호를 입력해주세요.</div>
+                </li>
+                <li><input id="submit" class="btn btn-primary btn-lg btn-block" type="button" onclick="login()" value="로그인"></li>
+            </ul>
+            <hr>
+            <div id="footer_con">
+                <p>계정이 없으신가요?<a href="./register">가입하기</a></p>
+            </div>
+        </form>
     </div>
-    <script>
-        window.addEventListener('load', () => {
-            console.log("sdfsdfsdf")
-            const forms = document.getElementsByClassName('input-form');
-            Array.prototype.filter.call(forms, (form) => {
-                console.log("dfsdf")
-                form.addEventListener('submit', function(event) {
-                    console.log("sdfsdfsdf")
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                        console.log("sdfsdfsdf")
-                    }
+    <div id="footer">
 
-                    console.log("~!!!!~!!!")
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        }, false);
+    </div>
+</div>
+<script>
+    window.addEventListener('load', () => {
+        const forms = document.getElementsByClassName('input-form');
+        Array.prototype.filter.call(forms, (form) => {
+            form.addEventListener('submit', function (event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    }, false);
 
-    </script>
+</script>
 </body>
 
 </html>
